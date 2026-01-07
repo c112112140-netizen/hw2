@@ -49,7 +49,7 @@ architecture Behavioral of breath is
     signal              state2 : STATE2TYPE;
     signal alreadyP_PWM_cycles : STD_LOGIC;
     signal              pwmCnt : STD_LOGIC_VECTOR (11 downto 0);
-    constant                 P : STD_LOGIC_VECTOR (11 downto 0) := "0000"&"0000"&"0011"; --3
+    constant                 P : STD_LOGIC_VECTOR (11 downto 0) := "1111"&"0000"&"0000"; --3
     signal           pwm_pedge : STD_LOGIC;
     --type FSM_state1 is (S0, S1, S2);
     signal              pwm : STD_LOGIC;
@@ -75,11 +75,11 @@ begin
         elsif i_clk'event and i_clk = '1' then
             case state2 is
                 when gettingBright =>
-                    if upbnd1 = "1111"&"1111" then --�w�g�̫G then
+                    if upbnd1 = "1111"&"1111" then --¤w¸g³Ì«G then
                         state2 <= gettingDark;
                     end if;
                 when gettingDark =>
-                    if upbnd1 = "0000"&"0000" then --�w�g�̷t then
+                    if upbnd1 = "0000"&"0000" then --¤w¸g³Ì·t then
                         state2 <= gettingBright;
                     end if;
                 when others =>
