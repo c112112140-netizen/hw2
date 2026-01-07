@@ -1,1 +1,13 @@
 # hw2
+裡用hw1的兩個計數來模擬PWM訊號，一個上數一個下數，兩個計數值相加為255。
+這次的作業要加一個FSM2來控制LED變亮與變暗的轉換，reset後狀態會進入讓LED逐漸變亮，如果已經最亮了就進入逐漸變暗的狀態。
+
+upbnd1與upbnd2分成兩個計數的計數上限，用於控制LED的亮暗程度，兩者為互補關係，相加為255，檢測是否已經最亮或最暗看其中一個就好。
+（第一個Bug，gettingBright與gettingDark裡面統一去偵測upbnd1或upbnd2即可）。
+
+upbnd1p與upbnd2p是控制兩個除塵的下游廢水處理，一個上數一個下數，同步相容，已經P_PWM_cycles會組成這兩個流程來改變上游廢水處理，這樣就實現了PWM的功能。
+upbnd1p只管upbnd1，upbnd2p只管upbnd2。
+（第二個bug，upbnd2p裡面打錯，出現upbnd1）。
+
+程式裡面定義了一個「P」值，用來PWM設定是否過了指定的P個週期，否則是為了避免PWM開關亮暗的速度太快，先看不出來波形的變化。
+先用一個Detect_PWM_pos_edge來抓取PWM的正緣訊號號，然後確定P_PWM_cycles計數是否過了指定的P個週期，如果過了就讓alreadyP_PWM_cycles輸出為1。 （第三個Bug，P_PWM_cycles的運作必須在抓到一個PWM正緣訊號才去判斷是否已計數到P個週期，否則持續計數，老師示範時將pwm_pos_edge = '1'放錯位置，導致計數有問題。）
