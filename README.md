@@ -8,6 +8,8 @@ upbnd1與upbnd2為兩個計數的計數上限，是用來切換FSM2的狀態，�
 先用一個Detect_PWM_pos_edge來抓取PWM的正緣訊號號，然後確定P_PWM_cycles計數是否過了指定的P個週期，如果過了就讓alreadyP_PWM_cycles輸出為1。 （第二個Bug)。
 
 上板子後，要增加p的上限，否則會因為太快導致肉眼看不見。
+影片連結：https://youtube.com/shorts/fT1ff9UEovk
+
 <img width="2520" height="481" alt="image" src="https://github.com/user-attachments/assets/e9a4579f-9500-4772-aa7f-2d532eae72d5" />
 <img width="2520" height="481" alt="image" src="https://github.com/user-attachments/assets/8eb0586f-5486-4635-81b5-b26e1d64b765" />
 <img width="2525" height="417" alt="image" src="https://github.com/user-attachments/assets/e9fc38a5-2214-48c6-8491-685691592771" />
